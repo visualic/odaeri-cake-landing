@@ -43,9 +43,9 @@ export const PROBLEMS: ProblemCard[] = [
   { emoji: "📱", text: "케이크 만들다 답장하러 폰 잡기" },
 ];
 
-export const SOLUTION_TITLE = "상담, 견적, 주문접수까지, AI가 알아서.";
+export const SOLUTION_TITLE = "상담, 주문접수까지, AI가 알아서.";
 export const SOLUTION_DESCRIPTION =
-  "사장님은 만드는 데만 집중하세요. 나머지는 오대리가 합니다.";
+  "사장님 스트레스를 오대리가 해결해드릴게요";
 
 export const HOW_IT_WORKS: HowItWorksStep[] = [
   {
