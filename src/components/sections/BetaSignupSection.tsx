@@ -51,19 +51,26 @@ export default function BetaSignupSection() {
 
   if (status === "success") {
     return (
-      <SectionWrapper id="beta-signup" bg="white">
-        <div className="mx-auto max-w-md text-center">
-          <div className="text-5xl">🎉</div>
-          <h2 className="mt-4 text-2xl font-bold text-warm-gray-900">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <div className="mx-auto max-w-md px-4 text-center">
+          <div className="text-7xl">🎉</div>
+          <h2 className="mt-6 text-3xl font-bold text-warm-gray-900 sm:text-4xl">
             등록 완료!
           </h2>
-          <p className="mt-3 text-warm-gray-500">
+          <p className="mt-4 text-lg text-warm-gray-600">
             출시되면 가장 먼저 알려드릴게요.
             <br />
             관심 가져주셔서 감사합니다!
           </p>
+          <Button
+            onClick={() => window.location.reload()}
+            size="lg"
+            className="mt-8"
+          >
+            처음으로 돌아가기
+          </Button>
         </div>
-      </SectionWrapper>
+      </div>
     );
   }
 

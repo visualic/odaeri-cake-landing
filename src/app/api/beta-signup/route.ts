@@ -26,16 +26,31 @@ export async function POST(request: Request) {
     const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
     if (webhookUrl) {
       try {
-        await fetch(webhookUrl, {
+        console.log("[Beta Signup] Webhook URL:", webhookUrl);
+        console.log("[Beta Signup] Payload:", JSON.stringify(payload, null, 2));
+
+        const response = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
+
+        console.log("[Beta Signup] Response status:", response.status);
+        const responseText = await response.text();
+        console.log("[Beta Signup] Response body:", responseText);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${responseText}`);
+        }
+
+        console.log("[Beta Signup] ✅ Google Sheets 저장 성공");
       } catch (err) {
-        console.error("[Beta Signup] Google Sheets 저장 실패:", err);
+        console.error("[Beta Signup] ❌ Google Sheets 저장 실패:");
+        console.error("Error details:", err);
+        // 에러가 발생해도 사용자 경험을 위해 성공으로 처리하지만 로그는 남김
       }
     } else {
-      console.warn("[Beta Signup] GOOGLE_SHEET_WEBHOOK_URL 미설정 — 로그만 기록합니다.");
+      console.warn("[Beta Signup] ⚠️ GOOGLE_SHEET_WEBHOOK_URL 미설정 — 로그만 기록합니다.");
       console.log("[Beta Signup]", payload);
     }
 
